@@ -1,16 +1,18 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+module.exports = () => {
+    const express = require('express')
+    const bodyParser = require('body-parser')
+    const expressValidator = require('express-validator')
 
-const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || 3000;
 
-var app = express()
-require('../app/routes/routes')(app)
+    var app = express()
+    app.use(bodyParser.json())
+    app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(expressValidator())
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+    require('../app/routes/routes')(app)
 
-app.listen(PORT, () => {
-    console.log(`Server running in port: ${PORT}`);
-})
-
-module.exports = app;
+    app.listen(PORT, () => {
+        console.log(`Server running in port: ${PORT}`);
+    })
+}
