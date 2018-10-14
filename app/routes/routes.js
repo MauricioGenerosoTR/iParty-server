@@ -1,11 +1,19 @@
 const express = require('express')
 
 module.exports = (app) => {
-    // Root API Route
-    const router = express.Router()
-    app.use('/api/iparty', router)
+
+    // Root Open API Route
+    const openRouter = express.Router()
+    app.use('/oapi/iparty', openRouter)
+
+    require('./authRoutes')(openRouter)
+
+    // Root Protected API Route
+    const protectedRouter = express.Router()
+    const auth = require('../../config/auth')
+    app.use('/api/iparty/v1', protectedRouter)
+    protectedRouter.use(auth)
 
     // Routes
-    const userRouterV1 = require('./userRoutesV1')
-    router.use('/v1/users', userRouterV1)
+    require('./userRoutesV1')(protectedRouter)
 }

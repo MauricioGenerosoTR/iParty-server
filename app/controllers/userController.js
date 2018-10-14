@@ -1,17 +1,21 @@
 var userModel = require('../../app/models/userModel')()
 
-module.exports.index = (req, res) => {
-    userModel.all((err, result) => {
+module.exports.findAll = (req, res) => {
+    userModel.findAll((err, results) => {
         if (err) throw err
-        res.send(result)
+        res.send(results)
     })
 }
 
 module.exports.findById = (req, res) => {
-    userModel.findById(req.params.id, (err, result) => {
+    userModel.findById(req.params.id, (err, results) => {
         if (err) throw err
-        res.send(result)
+        res.send(results)
     })
+}
+
+module.exports.findByEmail = (email, callback) => {
+    return userModel.findByEmail(email, callback)
 }
 
 module.exports.save = (req, res) => {
@@ -27,8 +31,8 @@ module.exports.save = (req, res) => {
         // tratar erros
     }
 
-    userModel.save(req.body, (err, result) => {
+    userModel.save(req.body, (err, results) => {
         if (err) throw err
-        res.send(result)
+        res.send(results)
     })
 }

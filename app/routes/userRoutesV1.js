@@ -1,17 +1,11 @@
-const express = require('express')
-const app = express()
 const userController = require('../controllers/userController')
 
-app.get('/', (req, res) => {
-    userController.index(req, res)
-})
+module.exports = (router) => {
+    router.get('/users', (req, res) => {
+        userController.findAll(req, res)
+    })
 
-app.get('/:id', (req, res) => {
-    userController.findById(req, res)
-})
-
-app.post('/', (req, res) => {
-    userController.save(req, save)
-})
-
-module.exports = app
+    router.get('/users/:id', (req, res) => {
+        userController.findById(req, res)
+    })
+}
