@@ -10,10 +10,10 @@ module.exports = (req, res, next) => {
         if (!token) {
             return res.status(403).send({ errors: ['No token provided.'] })
         }
-        if (!token.startsWith('BAERER ')) {
+        if (!token.startsWith('Bearer ')) {
             return res.status(403).send({ errors: ['Invalid token format.'] })
         }
-        jwt.verify(token.replace('BAERER ', ''), secret.authSecret, function(err, decoded) {
+        jwt.verify(token.replace('Bearer ', ''), secret.authSecret, function(err, decoded) {
             if (err) {
                 return res.status(403).send({
                     errors: ['Failed to authenticate token.']

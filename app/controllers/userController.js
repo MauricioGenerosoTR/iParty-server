@@ -33,6 +33,6 @@ module.exports.save = (req, res) => {
 
     userModel.save(req.body, (err, results) => {
         if (err) throw err
-        res.send(results)
+        res.status(201).send(results)
     })
 }

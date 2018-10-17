@@ -4,7 +4,7 @@ module.exports = (app) => {
 
     // Root Open API Route
     const openRouter = express.Router()
-    app.use('/oapi/iparty', openRouter)
+    app.use('/api/iparty', openRouter)
 
     require('./authRoutes')(openRouter)
 
