@@ -2,6 +2,7 @@ module.exports = () => {
     const express = require('express')
     const bodyParser = require('body-parser')
     const expressValidator = require('express-validator')
+    const cors = require('cors')
 
     const PORT = process.env.PORT || 3000;
 
@@ -9,6 +10,7 @@ module.exports = () => {
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(expressValidator())
+    app.use(cors())
 
     require('../app/routes/routes')(app)
 

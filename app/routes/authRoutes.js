@@ -12,16 +12,17 @@ module.exports = (router) => {
     router.post('/login', (req, res, next) => {
         const email = req.body.email || ''
         const password = req.body.password || ''
-
+        
         userController.findByEmail(email, (err, results) => {
             if (err) throw err
             if (results[0] && bcrypt.compareSync(password, results[0].password)) {
                 const token = jwt.sign(results[0], secret.authSecret, {
                     expiresIn: "1 day"
                 })
-                res.json({ token })
+                res.setHeader('Authorization', 'Bearer ' + token)
+                res.status(200).send({ token: 'Bearer ' + token })
             } else {
-                return res.status(400).send({ errors: ['Invalid User/Password'] })
+                return res.status(401).send({ errors: ['Invalid User/Password'] })
             }
         })
     })
