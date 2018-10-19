@@ -28,9 +28,12 @@ module.exports = (router) => {
     })
 
     router.post('/validateToken', (req, res) => {
-        const token = req.body.token || ''
+        let token = req.body.token || ''
+        token = token.replace('Bearer ', '')
+
         jwt.verify(token, secret.authSecret, function(err, decoded) {
-            return res.status(200).send({ valid: !err })
+            if (err) return res.status(400).send()
+            return res.status(200).send()
         })
     })
 
