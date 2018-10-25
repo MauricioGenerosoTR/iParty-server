@@ -19,6 +19,8 @@ module.exports = (router) => {
                 const token = jwt.sign(results[0], secret.authSecret, {
                     expiresIn: "1 day"
                 })
+                delete results[0]['password']
+                req.session.user = results[0]
                 res.setHeader('Authorization', 'Bearer ' + token)
                 res.status(200).send({ token: 'Bearer ' + token })
             } else {
