@@ -1,4 +1,5 @@
 const userController = require('../controllers/userController')
+const jwtdecode = require('jwt-decode')
 
 module.exports = (router) => {
     router.get('/users/all', (req, res) => {
