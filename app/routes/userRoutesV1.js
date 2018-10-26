@@ -10,12 +10,12 @@ module.exports = (router) => {
         let user = req.session.user
         if (user) {
             res.status(200).send(user)
-        } else {
-            let decoded = jwtdecode(req.headers.authorization)
-            if (decoded.id) {
-                res.status(200).send({ id: decoded.id, name: decoded.name, email: decoded.email })
-            }
-        }
+        } //else {
+        //let decoded = jwtdecode(req.headers.authorization)
+        //if (decoded.id) {
+        //   res.status(200).send({ id: decoded.id, name: decoded.name, email: decoded.email })
+        // }
+        //}
         res.status(401).end()
     })
 }

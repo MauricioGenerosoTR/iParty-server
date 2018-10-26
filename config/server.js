@@ -12,7 +12,11 @@ module.exports = () => {
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(expressValidator())
-    app.use(session({ secret: secret.sessionSecret}));
+    app.use(session({
+        secret: secret.sessionSecret,
+        resave: false,
+        saveUninitialized: true
+    }))
     app.use(cors())
 
     require('../app/routes/routes')(app)
