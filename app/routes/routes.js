@@ -21,4 +21,5 @@ module.exports = (app) => {
 
     // Routes
     require('./userRoutesV1')(protectedRouter)
+    require('./photoRoutesV1')(protectedRouter)
 }
