@@ -24,4 +24,11 @@ module.exports = () => {
     app.listen(PORT, () => {
         console.log(`Server running in port: ${PORT}`);
     })
+
+    /** Don't remove**/
+    const http = require("http");
+    setInterval(() => {
+        http.get("http://iparty-server.herokuapp.com/")
+        console.log('keep alive')
+    }, 300000)
 }
