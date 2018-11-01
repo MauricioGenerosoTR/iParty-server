@@ -4,7 +4,6 @@ module.exports = [
       name varchar(45) not null,
       email varchar(60) not null,
       password varchar(64) not null,
-      imgSrc varchar(255),
       primary key(id)
     )`//,
     //`CREATE TABLE IF NOT EXISTS DRINKS (
