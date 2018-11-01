@@ -1,6 +1,6 @@
 var conn = require('../../config/db')
 
-const VISIBLE_COLUMNS = 'id, name, email, imgSrc'
+const VISIBLE_COLUMNS = 'id, name, email'
 
 module.exports = () => {
 
