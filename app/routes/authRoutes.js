@@ -175,9 +175,20 @@ module.exports = (router) => {
                     results[0].code_change_password = 0
                     results[0].token_change_password = null
 
+                    const email = results[0].email
+
                     userController.update(results[0], (err, results) => {
                         if (err) throw err
-                        return res.status(200).end()
+
+                        transporter.sendMail({
+                            from: emailServer,
+                            to: email,
+                            subject: 'Password changed',
+                            text: 'Your password was changed with succcess.'
+                        }, function(err, info) {
+                            if (err) throw err
+                            res.status(200).end()
+                        })
                     })
                 } else {
                     return res.status(400).end()
