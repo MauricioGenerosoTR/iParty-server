@@ -18,6 +18,10 @@ module.exports.findByEmail = (email, callback) => {
     return userModel.findByEmail(email, callback)
 }
 
+module.exports.findByEmailAndTokenAndCode = (email, token, code, callback) => {
+    return userModel.findByEmailAndTokenAndCode(email, token, code, callback)
+}
+
 module.exports.save = (req, res) => {
 
     req.assert('name', 'Preencha o nome').notEmpty()
@@ -35,4 +39,8 @@ module.exports.save = (req, res) => {
         if (err) throw err
         res.status(201).send(results)
     })
+}
+
+module.exports.update = (user, callback) => {
+    userModel.update(user, callback)
 }
