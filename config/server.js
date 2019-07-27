@@ -26,8 +26,10 @@ module.exports = () => {
     })
 
     /** Don't remove**/
+    /*
     const http = require("http");
     setInterval(() => {
         http.get("http://iparty-server.herokuapp.com/keep-alive")
     }, 1500000)
+    */
 }
